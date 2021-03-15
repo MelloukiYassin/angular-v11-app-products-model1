@@ -1,0 +1,100 @@
+<div class="mb-3">
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <ul class="navbar navbar-nav">
+          <li>
+            <button (click)="onGetAllProducts()" class="btn btn-outline-info ml-2">
+              All
+            </button>
+          </li>
+          <li>
+            <button (click)="onGetSelectedProducts()" class="btn btn-outline-info ml-2">Selected</button>
+          </li>
+          <li>
+            <button (click)="onGetAvailableProducts()" class="btn btn-outline-info ml-2">Available</button>
+          </li>
+          <li>
+            <button (click)="onNewProducts()" class="btn btn-outline-info ml-2">New</button>
+          </li>
+        </ul>
+        <ul class="navbar navbar-nav ml-auto">
+            <li>
+                <form #form="ngForm" (ngSubmit)="onSearch(form.value)">
+                    <div class="form-group">
+                        <div class="col-auto">
+                            <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <fa-icon [icon]="faSearch"></fa-icon>
+                                </div>
+                              </div>
+                              <input type="text" class="form-control mr-1" ngModel name="keyword" placeholder="Search">
+                              <button class="btn btn-outline-dark">Search</button>
+                            </div>
+                          </div>                   
+                    </div>
+                </form>
+            </li>
+        </ul>
+      </nav>
+</div>
+
+<div class="container">
+    <ng-container *ngIf="products$ | async as result" [ngSwitch]="result.dataState">
+        <ng-container *ngSwitchCase="DataStateEnum.ERROR">
+          <div class="d-flex justify-content-center">
+            <span class="alert alert-danger text-center">{{ result.errorMessage }}</span> 
+          </div>
+        </ng-container>
+      
+        <ng-container *ngSwitchCase="DataStateEnum.LOADING">
+            <div class="d-flex justify-content-center">
+              <fa-icon [icon]="faSpinner" class="fa-4x fa-spin"></fa-icon>
+            </div>
+        </ng-container>
+      
+        <ng-container *ngSwitchCase="DataStateEnum.LOADED">
+            <div class="container">
+              <table class="table">
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Selected</th>
+                    <th>Available</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                  <tr *ngFor="let product of result.data">
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>{{ product.selected }}</td>
+                    <td>{{ product.available }}</td>
+                    <td>
+                        <button (click)="onSelect(product)" class="btn btn-sm" [ngClass]="product.selected?'btn-success':'btn-danger'">
+                            <span *ngIf="product.selected">Unselect</span>
+                            <span *ngIf="!product.selected">Select</span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-danger btn-sm" (click)="onDelete(product)">
+                          <fa-icon [icon]="faTrashAlt"></fa-icon>
+                        </button>
+                    </td>
+                    <td>
+                      <button class="btn btn-outline-primary btn-sm" (click)="onEdit(product)">
+                        <fa-icon [icon]="faEdit"></fa-icon>
+                      </button>
+                  </td>
+                  </tr>
+                </table>
+            </div>
+        </ng-container>
+      </ng-container>
+</div>
+
+
+

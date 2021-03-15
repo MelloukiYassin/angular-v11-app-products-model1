@@ -1,0 +1,57 @@
+<div class="container mt-3" *ngIf="productFormGroup">
+    <form [formGroup]="productFormGroup">
+        <div class="form-group">
+            <div class="row mb-3">
+                <div class="col-sm">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name" placeholder="Ex. HP 580">
+                    </mat-form-field>
+                    <div *ngIf="productFormGroup.controls.name.errors">
+                        <mat-error class="invalid-feedback"
+                        *ngIf="(productFormGroup.controls.name.errors.required && productFormGroup.controls.name.touched) || (productFormGroup.controls.name.errors.required && submitted)">
+                        Email is <strong>required</strong>
+                      </mat-error>   
+                    </div>                
+                </div>
+                <div class="col-sm">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Price</mat-label>
+                        <input matInput formControlName="price" type="number" placeholder="00.0">
+                      </mat-form-field>
+                      <div *ngIf="productFormGroup.controls.price.errors">
+                        <mat-error class="invalid-feedback"
+                        *ngIf="(productFormGroup.controls.price.errors.required && productFormGroup.controls.price.touched) || (productFormGroup.controls.price.errors.required && submitted)">
+                        Price is <strong>required</strong>
+                      </mat-error> 
+                      </div> 
+                </div>
+                <div class="col-sm">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Quantity</mat-label>
+                        <input matInput formControlName="quantity" type="number" placeholder="00">
+                      </mat-form-field>
+                      <div *ngIf="productFormGroup.controls.quantity.errors">
+                        <mat-error class="invalid-feedback"
+                        *ngIf="(productFormGroup.controls.quantity.errors.required && productFormGroup.controls.quantity.touched) || (productFormGroup.controls.quantity.errors.required && submitted)">
+                        Quantity is <strong>required</strong>
+                      </mat-error> 
+                      </div>    
+                </div>  
+            </div>
+            <div class="row">
+                <section class="example-section col-sm">
+                    <mat-checkbox formControlName="selected" class="example-margin">Selected</mat-checkbox>
+                </section>
+                <section class="example-section col-sm">
+                    <mat-checkbox formControlName="available" class="example-margin">Available</mat-checkbox>
+                </section>
+                <div class="example-button-container col-sm">
+                    <button mat-fab color="primary" (click)="onSaveProduct()">
+                        <mat-icon>save</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

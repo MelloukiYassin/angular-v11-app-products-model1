@@ -1,0 +1,60 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Computer",
+      "price": 7500,
+      "quantity": 120,
+      "selected": true,
+      "available": true
+    },
+    {
+      "id": 2,
+      "name": "Printer",
+      "price": 2300,
+      "quantity": 80,
+      "selected": false,
+      "available": false
+    },
+    {
+      "id": 3,
+      "name": "USB",
+      "price": 74,
+      "quantity": 50,
+      "selected": false,
+      "available": true
+    },
+    {
+      "id": 4,
+      "name": "Reader NFC",
+      "price": "450",
+      "quantity": 14,
+      "selected": true,
+      "available": false
+    },
+    {
+      "name": "HP 580",
+      "price": 15000,
+      "quantity": 25,
+      "selected": false,
+      "available": true,
+      "id": 5
+    },
+    {
+      "name": "Dell T540",
+      "price": 12500,
+      "quantity": 9,
+      "selected": true,
+      "available": true,
+      "id": 6
+    },
+    {
+      "id": 7,
+      "name": "ThinkPad T570",
+      "price": "7000",
+      "quantity": 12,
+      "selected": true,
+      "available": false
+    }
+  ]
+}
